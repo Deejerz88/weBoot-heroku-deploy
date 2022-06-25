@@ -6,7 +6,7 @@ Work with a partner to resolve the following issue(s):
 
 ## Expected Behavior
 
-When the command `curl http://api.github.com` is run from the command line, the output includes the following data:
+When the command `curl https://api.github.com` is run from the command line, the output includes the following data:
 
 ```json
 {
