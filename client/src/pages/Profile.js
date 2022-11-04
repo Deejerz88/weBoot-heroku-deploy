@@ -69,7 +69,7 @@ const Profile = () => {
     console.log("dropped", dropped);
     const file = dropped[0];
     setImagePreview(file);
-    const path = `/assets/images/uploads/profile-${userData._id}.jpg`;
+    const path = `./assets/images/uploads/profile-${userData._id}.jpg`;
     setFormState({
       ...formState,
       image: path,

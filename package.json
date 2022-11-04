@@ -8,7 +8,8 @@
     "start:server": "cd server && npm start",
     "start:dev": "concurrently \"cd server && npm run watch\" \"npm run start:client\"",
     "heroku-postbuild": "cd client && npm run build",
-    "start": "cd server && npm start"
+    "start": "cd server && npm start",
+    "serve": "cd client && npm run build && serve -s build"
   },
   "dependencies": {
     "concurrently": "^7.5.0",
