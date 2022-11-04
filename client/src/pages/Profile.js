@@ -15,8 +15,8 @@ import { UPDATE_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { FaEdit } from "react-icons/fa/index.esm.js";
 import $ from "jquery";
-import AvatarEditor from "react-avatar-editor";
-import Dropzone from "react-dropzone";
+// import AvatarEditor from "react-avatar-editor";
+// import Dropzone from "react-dropzone";
 import axios from "axios";
 
 const Profile = () => {
@@ -32,12 +32,12 @@ const Profile = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [editing, setEditing] = useState(false);
   const [changed, setChanged] = useState(false);
-  const [imagePreview, setImagePreview] = useState(null);
+  // const [imagePreview, setImagePreview] = useState(null);
   // eslint-disable-next-line no-unused-vars
   const { loading, data } = useQuery(QUERY_USER);
   const [updateUser, { error }] = useMutation(UPDATE_USER);
-  const [imageChanged, setImageChanged] = useState(false);
-  const [editor, setEditor] = useState(null);
+  // const [imageChanged, setImageChanged] = useState(false);
+  // const [editor, setEditor] = useState(null);
   // const userData = data?.user || {};
   useEffect(() => {
     if (data) {
@@ -65,17 +65,17 @@ const Profile = () => {
     console.log("formState", formState);
   }, [formState]);
 
-  const handleDrop = (dropped) => {
-    console.log("dropped", dropped);
-    const file = dropped[0];
-    setImagePreview(file);
-    const path = `./assets/images/uploads/profile-${userData._id}.jpg`;
-    setFormState({
-      ...formState,
-      image: path,
-    });
-    setImageChanged(true);
-  };
+  // const handleDrop = (dropped) => {
+  //   console.log("dropped", dropped);
+  //   const file = dropped[0];
+  //   setImagePreview(file);
+  //   const path = `./assets/images/uploads/profile-${userData._id}.jpg`;
+  //   setFormState({
+  //     ...formState,
+  //     image: path,
+  //   });
+  //   setImageChanged(true);
+  // };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -121,44 +121,44 @@ const Profile = () => {
       case "icon":
         setEditing(true);
         break;
-      case "save":
-        setImageChanged(false);
-        try {
-          console.log("formState", formState);
-          if (!formState.password) delete formState.password;
+      // case "save":
+      //   setImageChanged(false);
+      //   try {
+      //     console.log("formState", formState);
+      //     if (!formState.password) delete formState.password;
 
-          const { data } = await updateUser({
-            variables: { ...formState },
-          });
-          console.log("data", data);
-          const id = userData._id;
-          if (editor) {
-            const canvas = editor.getImage();
-            const img = editor.getImageScaledToCanvas().toDataURL();
-            console.log("canvas", canvas, "img", typeof img);
-            const newImg = { data: img, contentType: "image/png" };
-            axios.post(`image/${id}`, { newImg }).then((res) => {
-              console.log("res", res);
-            });
-          }
-        } catch (err) {
-          console.error(err);
-        }
-        break;
-      case "cancel":
-        setImageChanged(false);
-        setImagePreview(null);
-        break;
+      //     const { data } = await updateUser({
+      //       variables: { ...formState },
+      //     });
+      //     console.log("data", data);
+      //     const id = userData._id;
+      //     if (editor) {
+      //       const canvas = editor.getImage();
+      //       const img = editor.getImageScaledToCanvas().toDataURL();
+      //       console.log("canvas", canvas, "img", typeof img);
+      //       const newImg = { data: img, contentType: "image/png" };
+      //       axios.post(`image/${id}`, { newImg }).then((res) => {
+      //         console.log("res", res);
+      //       });
+      //     }
+      //   } catch (err) {
+      //     console.error(err);
+      //   }
+      //   break;
+      // case "cancel":
+      //   setImageChanged(false);
+      //   setImagePreview(null);
+      //   break;
       default:
         break;
     }
   };
-  const setEditorRef = (editor) => setEditor(editor);
+  // const setEditorRef = (editor) => setEditor(editor);
   return (
     <Container fluid>
       <Row>
         <Col xs={2}>
-          <Dropzone
+          {/* <Dropzone
             onDrop={handleDrop}
             noKeyboard
             noClick={imageChanged}
@@ -201,7 +201,7 @@ const Profile = () => {
             >
               Cancel
             </Button>
-          </div>
+          </div> */}
         </Col>
         <Col xs={8} id="profile-info">
           <Form
