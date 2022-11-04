@@ -6,7 +6,7 @@ router.post("/:id", (req, res) => {
   const image = req.body.newImg;
   const data = image.data.replace(/^data:image\/(.+);base64,/, "");
   fs.writeFile(
-    `./assets/images/uploads/profile-${id}.jpg`,
+    `../client/src/assets/images/uploads/profile-${id}.jpg`,
     data,
     "base64",
     (err) => {
